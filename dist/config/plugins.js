@@ -3,11 +3,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = ({ env }) => ({
     upload: {
         config: {
-            provider: "aws-s3",
+            provider: "@strapi/provider-upload-aws-s3",
             providerOptions: {
-                region: "us-east-1",
+                accessKeyId: env("AWS_ACCESS_KEY_ID"),
+                secretAccessKey: env("AWS_ACCESS_SECRET"),
+                region: env("AWS_REGION", "us-east-1"),
                 params: {
-                    Bucket: "strapi-uploads-bucket-us-east-1",
+                    Bucket: env("AWS_S3_BUCKET", "strapi-uploads-bucket-us-east-1"),
                 },
             },
         },
